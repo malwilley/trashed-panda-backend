@@ -89,6 +89,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	router := httprouter.New()
+	router.NotFound = http.FileServer(http.Dir("./static"))
 	router.GET("/ingredients", getEncodedIngredients)
 	router.GET("/makedrink/:ingredients", makeDrinkFromList)
 
